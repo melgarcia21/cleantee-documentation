@@ -1,0 +1,54 @@
+---
+import type { GetStaticPaths } from 'astro';
+import type { CollectionEntry, getCollection as _getCollection } from 'astro:content';
+import { getCollection } from 'astro:content';
+import DocLayout from '../../layouts/DocLayout.astro';
+
+type DocsEntry = CollectionEntry<'docs'>;
+
+type Props = {
+  entry: DocsEntry;
+};
+
+function hasRender(
+  e: unknown
+): e is { render: () => Promise<{ Content: any; headings?: any[] }> } {
+  return Boolean(e && typeof (e as any).render === 'function');
+}
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  // explicitly type docs so map callback gets a typed `entry`
+  const docs: DocsEntry[] = await getCollection('docs');
+
+  const allDocs = docs.map((entry) => {
+
+    const idNoExt = entry.id.replace(/\.(md|mdx)$/, '');
+    const segments = idNoExt.split('/');
+    return {
+      params: { slug: segments },
+      props: { entry },
+    };
+  });
+
+  return allDocs;
+};
+
+const { entry } = Astro.props as Props;
+
+// Render the entry only if it has a render function (type guard)
+let Content = null;
+let headings: Array<any> = [];
+
+if (hasRender(entry)) {
+  const rendered = await entry.render();
+  Content = rendered.Content;
+  headings = rendered.headings ?? [];
+}
+---
+<DocLayout 
+  title={entry.data.title} 
+  description={entry.data.description}
+  headings={headings}
+>
+  {Content ? <Content /> : <div>Unable to render content.</div>}
+</DocLayout>

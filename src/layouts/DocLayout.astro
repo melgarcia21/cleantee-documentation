@@ -1,0 +1,188 @@
+---
+// src/layouts/DocLayout.astro
+import BaseLayout from './BaseLayout.astro';
+import Header from '../components/Header.svelte';
+import Sidebar from '../components/Sidebar.svelte';
+import TOC from '../components/TOC.svelte';
+
+interface Props {
+  title: string;
+  description?: string;
+  headings?: Array<{
+    depth: number;
+    slug: string;
+    text: string;
+  }>;
+}
+
+const { title, description, headings = [] } = Astro.props;
+const currentPath = Astro.url.pathname;
+
+// Filter headings to only show h2 and h3
+const tocHeadings = headings.filter(h => h.depth === 2 || h.depth === 3);
+---
+
+<BaseLayout title={title} description={description}>
+  <!-- Header -->
+  <Header client:load />
+  
+  <!-- Main Layout -->
+  <div class="flex min-h-screen">
+    <!-- Sidebar Navigation -->
+    <Sidebar currentPath={currentPath} client:load />
+    
+    <!-- Main Content Area -->
+    <main class="flex-1 lg:ml-64 mt-16">
+      <div class="max-w-full">
+        <div class="flex">
+          <!-- Article Content -->
+          <article class="flex-1 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <!-- Breadcrumb Navigation -->
+            <nav class="mb-4 text-sm" aria-label="Breadcrumb">
+              <ol class="flex items-center space-x-2 text-gray-500">
+                <li>
+                  <a href="/" class="hover:text-primary-600 transition-colors">
+                    Home
+                  </a>
+                </li>
+                {currentPath !== '/' && (
+                  <>
+                    <li>
+                      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                      </svg>
+                    </li>
+                    <li class="text-gray-900 font-medium">
+                      {title}
+                    </li>
+                  </>
+                )}
+              </ol>
+            </nav>
+            
+            <!-- Page Title -->
+            <header class="mb-8 pb-8 border-b border-gray-200">
+              <h1 class="text-4xl font-bold text-gray-900 mb-4">
+                {title}
+              </h1>
+              {description && (
+                <p class="text-xl text-gray-600">
+                  {description}
+                </p>
+              )}
+            </header>
+            
+            <!-- Markdown Content -->
+            <div class="prose prose-lg max-w-none">
+              <slot />
+            </div>
+            
+            <!-- Page Footer -->
+            <footer class="mt-16 pt-8 border-t border-gray-200">
+              <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+                <div class="text-sm text-gray-600">
+                  Last updated: {new Date().toLocaleDateString('en-US', { 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                  })}
+                </div>
+                <div class="flex items-center gap-4">
+                  <a 
+                    href="https://github.com/your-repo/cleantee-docs" 
+                    class="text-sm text-primary-600 hover:text-primary-700 font-medium"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Edit this page on GitHub →
+                  </a>
+                </div>
+              </div>
+            </footer>
+          </article>
+          
+          <!-- Table of Contents (Desktop) -->
+          {tocHeadings.length > 0 && (
+            <aside class="hidden xl:block w-64 shrink-0">
+              <div class="sticky top-24 px-4 py-8">
+                <TOC headings={tocHeadings} client:visible />
+              </div>
+            </aside>
+          )}
+        </div>
+      </div>
+    </main>
+  </div>
+  
+  <!-- Mobile TOC Toggle -->
+  {tocHeadings.length > 0 && (
+    <button
+      id="mobile-toc-toggle"
+      class="xl:hidden fixed bottom-24 right-8 p-3 bg-white text-gray-900 rounded-full shadow-lg hover:shadow-xl transition-all z-40 border border-gray-200"
+      aria-label="Toggle table of contents"
+    >
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+    
+    <!-- Mobile TOC Overlay -->
+    <div
+      id="mobile-toc-overlay"
+      class="xl:hidden fixed inset-0 bg-black bg-opacity-50 z-40 hidden"
+    ></div>
+    
+    <!-- Mobile TOC Panel -->
+    <div
+      id="mobile-toc-panel"
+      class="xl:hidden fixed right-0 top-0 bottom-0 w-80 bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300 overflow-y-auto"
+    >
+      <div class="p-6">
+        <div class="flex items-center justify-between mb-6">
+          <h2 class="text-lg font-semibold text-gray-900">On this page</h2>
+          <button
+            id="mobile-toc-close"
+            class="p-2 text-gray-500 hover:text-gray-900 rounded-lg hover:bg-gray-100"
+            aria-label="Close table of contents"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        <TOC headings={tocHeadings} client:visible />
+      </div>
+    </div>
+  )}
+  
+  <script>
+    // Mobile TOC functionality
+    const mobileToggle = document.getElementById('mobile-toc-toggle');
+    const mobilePanel = document.getElementById('mobile-toc-panel');
+    const mobileOverlay = document.getElementById('mobile-toc-overlay');
+    const mobileClose = document.getElementById('mobile-toc-close');
+    
+    function openMobileTOC() {
+      mobilePanel?.classList.remove('translate-x-full');
+      mobileOverlay?.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeMobileTOC() {
+      mobilePanel?.classList.add('translate-x-full');
+      mobileOverlay?.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+    
+    mobileToggle?.addEventListener('click', openMobileTOC);
+    mobileClose?.addEventListener('click', closeMobileTOC);
+    mobileOverlay?.addEventListener('click', closeMobileTOC);
+    
+    // Close on ESC key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeMobileTOC();
+      }
+    });
+  </script>
+</BaseLayout>

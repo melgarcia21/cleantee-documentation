@@ -1,0 +1,29 @@
+---
+// src/layouts/HomeLayout.astro
+import BaseLayout from './BaseLayout.astro';
+import Header from '../components/Header.svelte';
+import Footer from '../components/Footer.svelte';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { 
+  title = 'CleanTee Online Booking System',
+  description = 'Complete documentation for the CleanTee cleaning service booking platform'
+} = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <!-- Header -->
+  <Header client:load />
+  
+  <!-- Main Content -->
+  <main class="mt-16">
+    <slot />
+  </main>
+  
+  <!-- Footer -->
+  <Footer />
+</BaseLayout>

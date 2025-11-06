@@ -1,20 +1,102 @@
 ---
-
+// src/layouts/BaseLayout.astro
 import '../styles/global.css';
 
-interface Props{
-	title: string;
-	description?: string;
-	ogImage?: string;
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
 }
 
-const {
-	title,
-	description = 'Complete documentation for CleanTee Online Booking System - A modern web application for cleaning service management',
-	ogImage = '/images/og-image.png',
+const { 
+  title, 
+  description = 'Complete documentation for CleanTee Online Booking System - A modern web application for cleaning service management',
+  ogImage = '/images/og-image.png'
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const fullTitle = title ? `${title} | CleanTee Docs` : 'CleanTee Documentation';
-
 ---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalURL} />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(ogImage, Astro.site)} />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={fullTitle} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL(ogImage, Astro.site)} />
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    
+    <title>{fullTitle}</title>
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#0ea5e9" />
+    
+    <!-- Sitemap -->
+    <link rel="sitemap" href="/sitemap-index.xml" />
+  </head>
+  
+  <body class="bg-gray-50 text-gray-900 antialiased">
+    <slot />
+    
+    <!-- Back to Top Button -->
+    <button
+      id="back-to-top"
+      class="fixed bottom-8 right-8 p-3 bg-primary-600 text-white rounded-full shadow-lg opacity-0 invisible transition-all duration-300 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 z-50"
+      aria-label="Back to top"
+    >
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+      </svg>
+    </button>
+    
+    <script>
+      // Back to top button functionality
+      const backToTopButton = document.getElementById('back-to-top');
+      
+      if (backToTopButton) {
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > 300) {
+            backToTopButton.classList.remove('opacity-0', 'invisible');
+            backToTopButton.classList.add('opacity-100', 'visible');
+          } else {
+            backToTopButton.classList.add('opacity-0', 'invisible');
+            backToTopButton.classList.remove('opacity-100', 'visible');
+          }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+        });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,208 @@
+---
+import HomeLayout from '../../layouts/HomeLayout.astro';
+import Card from '../Card.svelte';
+
+const techBadges = [
+  'Laravel 12',
+  'React 18',
+  'MySQL 8.0+',
+  'Tailwind CSS'
+];
+
+const quickLinks = [
+  {
+    title: 'Getting Started',
+    icon: '🚀',
+    href: '/getting-started/introduction',
+    description: 'New to CleanTee? Start here to set up and configure the system.'
+  },
+  {
+    title: 'System Overview',
+    icon: '📖',
+    href: '/overview/background',
+    description: 'Learn about the project background, objectives, and scope.'
+  },
+  {
+    title: 'User Guides',
+    icon: '👥',
+    href: '/user-guides/customer/getting-started',
+    description: 'Guides for customers, staff, and administrators.'
+  },
+  {
+    title: 'Technical Docs',
+    icon: '💻',
+    href: '/technical/backend/structure',
+    description: 'Architecture, database design, and implementation details.'
+  },
+  {
+    title: 'API Reference',
+    icon: '⚡',
+    href: '/api/authentication',
+    description: 'Complete API documentation with examples.'
+  },
+  {
+    title: 'Deployment',
+    icon: '🚀',
+    href: '/deployment/checklist',
+    description: 'Deploy CleanTee to production environments.'
+  }
+];
+
+const features = [
+  {
+    title: 'Complete User Guides',
+    description: 'Step-by-step guides for customers, staff, and administrators with screenshots and examples.',
+    // small inline SVG for visual consistency
+    svg: <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+  },
+  {
+    title: 'Technical Documentation',
+    description: 'In-depth technical docs covering Laravel backend, React frontend, and MySQL database.',
+    svg: <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
+  },
+  {
+    title: 'Database Schema',
+    description: 'Complete database documentation with ERD diagrams, table descriptions, and relationships.',
+    svg: <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4" /></svg>
+  },
+  {
+    title: 'Deployment Guides',
+    description: 'Production deployment instructions, server setup, and maintenance procedures.',
+    svg: <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" /></svg>
+  }
+];
+---
+<HomeLayout>
+  <!-- Hero Section -->
+  <section class="relative bg-linear-to-br from-primary-600 via-primary-700 to-primary-800 text-white overflow-hidden">
+    <!-- Background Pattern -->
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width=&quot;60&quot; height=&quot;60&quot; viewBox=&quot;0 0 60 60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;%3E%3Cg fill=&quot;none&quot; fill-rule=&quot;evenodd&quot;%3E%3Cg fill=&quot;%23ffffff&quot; fill-opacity=&quot;0.4&quot;%3E%3Cpath d=&quot;M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z&quot;/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+    </div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
+      <div class="text-center">
+        <!-- Logo -->
+        <div class="flex justify-center mb-8">
+          <div class="w-20 h-20 bg-white rounded-2xl flex items-center justify-center shadow-xl">
+            <span class="text-primary-600 font-bold text-4xl">C</span>
+          </div>
+        </div>
+
+        <!-- Title -->
+        <h1 class="text-5xl md:text-6xl font-bold mb-6">
+          CleanTee Documentation
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="text-xl md:text-2xl text-primary-100 mb-10 max-w-3xl mx-auto">
+          Complete guide for the CleanTee Online Booking System - A modern web application for cleaning service management
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+          <a
+            href="/getting-started/introduction"
+            class="btn btn-primary bg-white text-primary-700 hover:bg-gray-100 px-8 py-3 text-lg"
+          >
+            Get Started →
+          </a>
+          <a
+            href="https://github.com/your-repo/cleantee"
+            class="btn btn-outline border-white text-white hover:bg-white/10 px-8 py-3 text-lg"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View on GitHub
+          </a>
+        </div>
+
+        <!-- Tech Stack Badges -->
+        <div class="mt-12 flex flex-wrap justify-center gap-3">
+          {techBadges.map(b => (
+            <span class="px-4 py-2 bg-white/10 backdrop-blur rounded-full text-sm font-medium">
+              {b}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Links Section -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+        Quick Navigation
+      </h2>
+      <p class="text-xl text-gray-600">
+        Jump to what you need
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {quickLinks.map(link => (
+        <Card
+          title={link.title}
+          icon={link.icon}
+          href={link.href}
+          client:load
+        >
+          <p>{link.description}</p>
+        </Card>
+      ))}
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="bg-white py-16 md:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          What's Inside
+        </h2>
+        <p class="text-xl text-gray-600">
+          Comprehensive documentation for every aspect
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        {features.map(feature => (
+          <div class="flex gap-4">
+            <div class="shrink-0">
+              <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
+                {feature.svg}
+              </div>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-gray-900 mb-2">
+                {feature.title}
+              </h3>
+              <p class="text-gray-600">
+                {feature.description}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="bg-primary-600 text-white py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-6">
+        Ready to Get Started?
+      </h2>
+      <p class="text-xl text-primary-100 mb-8">
+        Follow our quick start guide and have CleanTee running in under 15 minutes.
+      </p>
+      <a
+        href="/getting-started/quick-start"
+        class="btn btn-primary bg-white text-primary-700 hover:bg-gray-100 px-8 py-3 text-lg"
+      >
+        Quick Start Guide →
+      </a>
+    </div>
+  </section>
+</HomeLayout>

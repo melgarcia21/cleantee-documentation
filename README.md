@@ -1,49 +1,119 @@
-# Starlight Starter Kit: Basics
+# CleanTee Documentation
 
-[![Built with Starlight](https://astro.badg.es/v2/built-with-starlight/tiny.svg)](https://starlight.astro.build)
+Official documentation website for the CleanTee Online Booking System.
 
+## 🚀 Quick Start
+
+### Prerequisites
+
+- Node.js 18+ and npm
+- Git
+
+### Installation
+```bash
+# Clone the repository
+git clone https://github.com/melgarcia21/cleantee-documentation.git
+cd cleantee-docs
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
 ```
-npm create astro@latest -- --template starlight
+
+Visit `http://localhost:4321` to view the site.
+
+## 📁 Project Structure
 ```
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-## 🚀 Project Structure
-
-Inside of your Astro + Starlight project, you'll see the following folders and files:
-
-```
-.
-├── public/
+├── public/          # Static assets
 ├── src/
-│   ├── assets/
-│   ├── content/
-│   │   └── docs/
-│   └── content.config.ts
-├── astro.config.mjs
-├── package.json
-└── tsconfig.json
+│   ├── components/  # Svelte components
+│   ├── layouts/     # Astro layouts
+│   ├── pages/       # Routes
+│   ├── content/     # Markdown documentation
+│   ├── styles/      # Global styles
+│   └── utils/       # Helper functions
+└── package.json
 ```
 
-Starlight looks for `.md` or `.mdx` files in the `src/content/docs/` directory. Each file is exposed as a route based on its file name.
+## 🛠️ Development
+```bash
+npm run dev      # Start dev server
+npm run build    # Build for production
+npm run preview  # Preview production build
+npm run check    # Type checking
+npm run lint     # Lint code
+npm run format   # Format code
+```
 
-Images can be added to `src/assets/` and embedded in Markdown with a relative link.
+## 📝 Writing Documentation
 
-Static assets, like favicons, can be placed in the `public/` directory.
+1. Create a new `.md` file in the appropriate `src/content/` subdirectory
+2. Add frontmatter:
+```yaml
+---
+title: Your Page Title
+description: Brief description
+---
+```
 
-## 🧞 Commands
+3. Write your content in Markdown
+4. The page will be automatically generated at build time
 
-All commands are run from the root of the project, from a terminal:
+## 🚢 Deployment
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+### Vercel (Recommended)
+```bash
+npm run build
+# Deploy dist/ folder
+```
 
-## 👀 Want to learn more?
+### Netlify
+```bash
+npm run build
+# Deploy dist/ folder
+```
 
-Check out [Starlight’s docs](https://starlight.astro.build/), read [the Astro documentation](https://docs.astro.build), or jump into the [Astro Discord server](https://astro.build/chat).
+### GitHub Pages
+```bash
+npm run build
+# Push dist/ to gh-pages branch
+```
+
+## 📄 License
+
+MIT License - See LICENSE file for details
+
+## 🤝 Contributing
+
+Contributions are welcome! Please read our contributing guidelines first.
+
+## 📧 Support
+
+For support, email meloervy@gmail.com or open an issue on GitHub.
+```
+
+### 16. `LICENSE`
+```
+MIT License
+
+Copyright (c) 2024 CleanTee Services
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

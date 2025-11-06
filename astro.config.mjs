@@ -6,12 +6,14 @@ import tailwindcss from '@tailwindcss/vite';
 import svelte from '@astrojs/svelte';
 import mdx from '@astrojs/mdx';
 
+import sitemap from '@astrojs/sitemap';
+
 // https://astro.build/config
 export default defineConfig({
   integrations: [starlight({
-			title: 'My Docs',
-			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/withastro/starlight' }],
-			sidebar: [
+            title: 'My Docs',
+            social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/withastro/starlight' }],
+            sidebar: [
           {
               label: 'Guides',
               items: [
@@ -23,8 +25,8 @@ export default defineConfig({
               label: 'Reference',
               autogenerate: { directory: 'reference' },
           },
-			],
-  }), svelte(), mdx()],
+            ],
+  }), svelte(), mdx(), sitemap()],
 
   vite: {
     plugins: [tailwindcss()],

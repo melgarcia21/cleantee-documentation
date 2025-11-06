@@ -2,15 +2,20 @@
   "name": "cleantee-documentation",
   "type": "module",
   "version": "0.0.1",
+  "description": "Documentation website for CleanTee Online Booking Web Aplication System",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "check": "astro check && tsc --noEmit",
+    "lint": "eslint . --ext .js,.ts,.astro,.svelte",
+    "format": "prettier --write \"**/*.{js,ts,astro,svelte,md,json}\""
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.9",
+    "@astrojs/sitemap": "^3.6.0",
     "@astrojs/starlight": "^0.36.2",
     "@astrojs/svelte": "^7.2.1",
     "@tailwindcss/vite": "^4.1.16",
@@ -19,5 +24,7 @@
     "svelte": "^5.43.3",
     "tailwindcss": "^4.1.16",
     "typescript": "^5.9.3"
-  }
+  },
+  "author": "Mel Garcia",
+  "license": "MIT"
 }
