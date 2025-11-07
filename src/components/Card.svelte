@@ -23,11 +23,11 @@
   this={Component}
   {...(isLink ? { href } : {})}
   {...linkProps}
-  class="card block rounded-xl p-6 transition-all duration-200 {variantStyles[variant]} {clickable ? 'cursor-pointer' : ''}"
+  class="card group block rounded-xl p-6 transition-all duration-200 {variantStyles[variant]} {clickable ? 'cursor-pointer' : ''}"
 >
   <div class="flex items-start gap-4">
     {#if icon}
-      <div class="flex-shrink-0 text-4xl" aria-hidden="true">
+      <div class="shrink-0 text-4xl" aria-hidden="true">
         {icon}
       </div>
     {/if}

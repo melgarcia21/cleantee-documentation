@@ -1,6 +1,6 @@
 ---
 import HomeLayout from '../layouts/HomeLayout.astro';
-import Card from '../Card.svelte';
+import Card from '../components/Card.svelte';
 
 const techBadges = [
   'Laravel 12',
@@ -52,23 +52,22 @@ const features = [
   {
     title: 'Complete User Guides',
     description: 'Step-by-step guides for customers, staff, and administrators with screenshots and examples.',
-    // small inline SVG for visual consistency
-    svg: <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+    svgPath: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'
   },
   {
     title: 'Technical Documentation',
     description: 'In-depth technical docs covering Laravel backend, React frontend, and MySQL database.',
-    svg: <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
+    svgPath: 'M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4'
   },
   {
     title: 'Database Schema',
     description: 'Complete database documentation with ERD diagrams, table descriptions, and relationships.',
-    svg: <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4" /></svg>
+    svgPath: 'M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4'
   },
   {
     title: 'Deployment Guides',
     description: 'Production deployment instructions, server setup, and maintenance procedures.',
-    svg: <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" /></svg>
+    svgPath: 'M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4'
   }
 ];
 ---
@@ -108,7 +107,7 @@ const features = [
             Get Started →
           </a>
           <a
-            href="https://github.com/your-repo/cleantee"
+            href=" https://github.com/melgarcia21/cleantee-documentation.git"
             class="btn btn-outline border-white text-white hover:bg-white/10 px-8 py-3 text-lg"
             target="_blank"
             rel="noopener noreferrer"
@@ -171,7 +170,9 @@ const features = [
           <div class="flex gap-4">
             <div class="shrink-0">
               <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
-                {feature.svg}
+                <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={feature.svgPath} />
+                </svg>
               </div>
             </div>
             <div>
