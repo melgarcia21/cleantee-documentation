@@ -3,8 +3,8 @@ export const SITE_DESCRIPTION =
   'Complete documentation for the CleanTee Online Booking System';
 export const SITE_URL = 'https://docs.cleantee.com';
 
-export const GITHUB_REPO = 'https://github.com/your-repo/cleantee';
-export const GITHUB_DOCS_REPO = 'https://github.com/your-repo/cleantee-docs';
+export const GITHUB_REPO = 'https://github.com/melgarcia21/CleanTee-Booking-System.git';
+export const GITHUB_DOCS_REPO = 'https://github.com/melgarcia21/cleantee-documentation.git';
 
 export const SOCIAL_LINKS = {
   github: GITHUB_REPO,

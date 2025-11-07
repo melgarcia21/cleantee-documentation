@@ -1,0 +1,18 @@
+---
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const query = Astro.url.searchParams.get('q') || '';
+---
+
+<BaseLayout title="Search Results">
+  <div class="max-w-4xl mx-auto px-4 py-16">
+    <h1 class="text-4xl font-bold mb-8">Search Results</h1>
+    {query ? (
+      <p class="text-gray-600">Searching for: <strong>{query}</strong></p>
+      <!-- Add search implementation -->
+    ) : (
+      <p class="text-gray-600">Enter a search query</p>
+    )}
+  </div>
+</BaseLayout>

@@ -146,6 +146,8 @@
         newExpanded.add(section.title);
       }
     });
+    expandedSections = newExpanded;
+    return () => {};
   });
 </script>
 

@@ -10,25 +10,24 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [starlight({
-            title: 'My Docs',
-            social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/withastro/starlight' }],
-            sidebar: [
-          {
-              label: 'Guides',
-              items: [
-                  // Each item here is one entry in the navigation menu.
-                  { label: 'Example Guide', slug: 'guides/example' },
-              ],
-          },
-          {
-              label: 'Reference',
-              autogenerate: { directory: 'reference' },
-          },
-            ],
-  }), svelte(), mdx(), sitemap()],
+  integrations: [
+    starlight({
+      title: 'CleanTee Documentation',
+      social: [
+        { icon: 'github', label: 'GitHub', href: 'https://github.com/melgarcia21/cleantee-documentation.git' }
+      ],
+      sidebar: [
+        { label: 'Getting Started', autogenerate: { directory: 'getting-started' } },
+        { label: 'System Overview', autogenerate: { directory: 'overview' } }
+        // Add other sections as they're created
+      ]
+    }),
+    svelte(),
+    mdx(),
+    sitemap()
+  ],
 
   vite: {
-    plugins: [tailwindcss()],
-  },
+    plugins: [tailwindcss()]
+  }
 });

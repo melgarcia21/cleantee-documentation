@@ -30,7 +30,7 @@ Visit `http://localhost:4321` to view the site.
 ├── src/
 │   ├── components/  # Svelte components
 │   ├── layouts/     # Astro layouts
-│   ├── pages/       # Routes
+│   ├── pages/       # Pages
 │   ├── content/     # Markdown documentation
 │   ├── styles/      # Global styles
 │   └── utils/       # Helper functions
