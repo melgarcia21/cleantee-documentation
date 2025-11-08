@@ -17,12 +17,20 @@
 <div class="progress-bar">
   {#if showLabel}
     <div class="flex justify-between items-center mb-2 text-sm">
-      <span class="font-medium text-gray-700">Progress</span>
+      <span class="font-medium text-gray-700" id="progress-label">Progress</span>
       <span class="text-gray-600">{Math.round(percentage)}%</span>
     </div>
   {/if}
-  
-  <div class="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
+
+  <div
+    class="w-full bg-gray-200 rounded-full h-2 overflow-hidden"
+    role="progressbar"
+    aria-valuenow={value}
+    aria-valuemin={0}
+    aria-valuemax={max}
+    aria-labelledby={showLabel ? "progress-label" : undefined}
+    aria-label={!showLabel ? "Progress" : undefined}
+  >
     <div
       class="h-full rounded-full transition-all duration-500 {colorStyles[color]}"
       style="width: {percentage}%"

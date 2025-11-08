@@ -147,7 +147,6 @@
       }
     });
     expandedSections = newExpanded;
-    return () => {};
   });
 </script>
 

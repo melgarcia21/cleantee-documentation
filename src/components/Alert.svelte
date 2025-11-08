@@ -9,6 +9,7 @@
   const config = {
     info: {
       icon: 'ℹ️',
+      iconLabel: 'Information',
       bgColor: 'bg-blue-50',
       borderColor: 'border-blue-200',
       textColor: 'text-blue-900',
@@ -16,6 +17,7 @@
     },
     success: {
       icon: '✅',
+      iconLabel: 'Success',
       bgColor: 'bg-green-50',
       borderColor: 'border-green-200',
       textColor: 'text-green-900',
@@ -23,6 +25,7 @@
     },
     warning: {
       icon: '⚠️',
+      iconLabel: 'Warning',
       bgColor: 'bg-yellow-50',
       borderColor: 'border-yellow-200',
       textColor: 'text-yellow-900',
@@ -30,6 +33,7 @@
     },
     error: {
       icon: '❌',
+      iconLabel: 'Error',
       bgColor: 'bg-red-50',
       borderColor: 'border-red-200',
       textColor: 'text-red-900',
@@ -41,10 +45,14 @@
 </script>
 
 {#if visible}
-  <div class="alert {style.bgColor} {style.textColor} border {style.borderColor} rounded-lg p-4 my-4">
+  <div
+    class="alert {style.bgColor} {style.textColor} border {style.borderColor} rounded-lg p-4 my-4"
+    role="alert"
+    aria-live="polite"
+  >
     <div class="flex {dismissible ? 'justify-between' : ''}">
       <div class="flex gap-3 flex-1">
-        <div class="shrink-0 text-xl">
+        <div class="shrink-0 text-xl" role="img" aria-label={style.iconLabel}>
           {style.icon}
         </div>
         <div class="flex-1">

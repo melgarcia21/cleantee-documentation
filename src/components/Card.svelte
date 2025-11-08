@@ -63,12 +63,11 @@
           {/if}
         </div>
       {/if}
-      
-      {#if $$slots.footer}
-        <div class="mt-4 pt-4 border-t border-gray-200">
-          <slot name="footer" />
-        </div>
-      {/if}
+
+      <!-- Footer slot (Svelte 5 compatible - removed $$slots check) -->
+      <div class="mt-4 pt-4 border-t border-gray-200 footer-slot">
+        <slot name="footer" />
+      </div>
     </div>
   </div>
 </svelte:element>
@@ -77,8 +76,13 @@
   .card:hover {
     transform: translateY(-2px);
   }
-  
+
   .card :global(p:last-child) {
     margin-bottom: 0;
+  }
+
+  /* Hide footer slot wrapper if empty (Svelte 5 compatible) */
+  .footer-slot:empty {
+    display: none;
   }
 </style>

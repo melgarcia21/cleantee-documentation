@@ -9,6 +9,7 @@
   const config = {
     note: {
       icon: '📝',
+      iconLabel: 'Note',
       bgColor: 'bg-gray-50',
       borderColor: 'border-gray-300',
       iconColor: 'text-gray-600',
@@ -17,6 +18,7 @@
     },
     tip: {
       icon: '💡',
+      iconLabel: 'Tip',
       bgColor: 'bg-green-50',
       borderColor: 'border-green-300',
       iconColor: 'text-green-600',
@@ -25,6 +27,7 @@
     },
     warning: {
       icon: '⚠️',
+      iconLabel: 'Warning',
       bgColor: 'bg-yellow-50',
       borderColor: 'border-yellow-300',
       iconColor: 'text-yellow-600',
@@ -33,6 +36,7 @@
     },
     danger: {
       icon: '🚨',
+      iconLabel: 'Danger',
       bgColor: 'bg-red-50',
       borderColor: 'border-red-300',
       iconColor: 'text-red-600',
@@ -41,6 +45,7 @@
     },
     info: {
       icon: 'ℹ️',
+      iconLabel: 'Information',
       bgColor: 'bg-blue-50',
       borderColor: 'border-blue-300',
       iconColor: 'text-blue-600',
@@ -61,15 +66,16 @@
 
 <div class="callout {style.bgColor} {style.textColor} border-l-4 {style.borderColor} rounded-r-lg my-6 overflow-hidden">
   <div class="flex items-start p-4">
-    <div class="shrink-0 {style.iconColor} text-2xl mr-3 mt-0.5">
+    <div class="shrink-0 {style.iconColor} text-2xl mr-3 mt-0.5" role="img" aria-label={style.iconLabel}>
       {style.icon}
     </div>
-    
+
     <div class="flex-1 min-w-0">
       {#if collapsible}
         <button
           on:click={() => isOpen = !isOpen}
           class="flex items-center justify-between w-full text-left mb-2 group"
+          aria-expanded={isOpen}
         >
           <span class="font-semibold {style.titleColor} text-base">
             {title || defaultTitle}

@@ -9,14 +9,14 @@
       { label: 'API Reference', href: '/api/authentication' },
     ],
     resources: [
-      { label: 'GitHub Repository', href: ' https://github.com/melgarcia21/cleantee-documentation.git' },
+      { label: 'GitHub Repository', href: 'https://github.com/melgarcia21/cleantee-documentation.git' },
       { label: 'Laravel Docs', href: 'https://laravel.com/docs' },
       { label: 'React Docs', href: 'https://react.dev' },
       { label: 'Tailwind CSS', href: 'https://tailwindcss.com' },
     ],
     community: [
-      { label: 'Report Issues', href: ' https://github.com/melgarcia21/cleantee-documentation/issues' },
-      { label: 'Discussions', href: ' https://github.com/melgarcia21/cleantee-documentation/discussions' },
+      { label: 'Report Issues', href: 'https://github.com/melgarcia21/cleantee-documentation/issues' },
+      { label: 'Discussions', href: 'https://github.com/melgarcia21/cleantee-documentation/discussions' },
       { label: 'Changelog', href: '/appendices/changelog' },
       { label: 'FAQ', href: '/appendices/faq' },
     ],
@@ -42,7 +42,7 @@
         </p>
         <div class="flex space-x-4">
           <a
-            href="https://github.com/your-repo/cleantee"
+            href="https://github.com/melgarcia21/cleantee-documentation"
             class="text-gray-400 hover:text-gray-600 transition-colors"
             aria-label="GitHub"
             target="_blank"
