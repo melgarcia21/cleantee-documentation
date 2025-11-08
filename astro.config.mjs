@@ -17,8 +17,8 @@ export default defineConfig({
         { icon: 'github', label: 'GitHub', href: 'https://github.com/melgarcia21/cleantee-documentation.git' }
       ],
       sidebar: [
-        { label: 'Getting Started', autogenerate: { directory: 'getting-started' } },
-        { label: 'System Overview', autogenerate: { directory: 'overview' } }
+        { label: 'Getting Started', autogenerate: { directory: 'docs/getting-started' } },
+        { label: 'System Overview', autogenerate: { directory: 'docs/overview' } }
         // Add other sections as they're created
       ]
     }),
